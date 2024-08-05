@@ -26,9 +26,9 @@ public class SupplierRepositoryImpl implements SupplierRepository {
     @Override
     public Optional<SupplierEntity> retrieveById(Long id) {
         String sql = "SELECT id,name,email,company,created_at,modified_at FROM supplier WHERE id = ?";
-        return jdbcTemplate.query(sql, new EmployeeRowMapper(),id)
-                 .stream()
-                 .findFirst();
+        return jdbcTemplate.query(sql, new EmployeeRowMapper(), id)
+                .stream()
+                .findFirst();
     }
 
     @Override
@@ -41,12 +41,12 @@ public class SupplierRepositoryImpl implements SupplierRepository {
                 supplierEntity.getCreatedAt(),
                 supplierEntity.getModifiedAt(),
                 supplierEntity.getId()
-                );
+        );
     }
 
     @Override
     public void delete(Long id) {
         String sql = "DELETE FROM supplier WHERE id = ?";
-        jdbcTemplate.update(sql,id);
+        jdbcTemplate.update(sql, id);
     }
 }

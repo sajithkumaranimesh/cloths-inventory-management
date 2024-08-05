@@ -1,0 +1,18 @@
+package com.pabaro.ims.exception;
+
+import com.pabaro.ims.dto.ErrorResponse;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+@ControllerAdvice
+public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
+
+
+    @ExceptionHandler(SupplierNotFoundException.class)
+    ResponseEntity<ErrorResponse> handleSupplierNotFoundException(SupplierNotFoundException ex){
+        ErrorResponse errorResponse = ErrorResponse.builder().errorMessage(ex.getMessage()).build();
+        return ResponseEntity.ok().body(errorResponse);
+    }
+}

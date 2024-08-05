@@ -2,12 +2,16 @@ package com.pabaro.ims.service.impl;
 
 import com.pabaro.ims.dto.Supplier;
 import com.pabaro.ims.entity.SupplierEntity;
+import com.pabaro.ims.exception.InvalidParameterException;
+import com.pabaro.ims.exception.SupplierNotFoundException;
 import com.pabaro.ims.repository.SupplierJpaRepository;
 import com.pabaro.ims.repository.SupplierRepository;
 import com.pabaro.ims.service.SupplierService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.util.NumberUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +36,7 @@ public class SupplierServiceImpl implements SupplierService {
         List<Supplier> supplierList = new ArrayList<>();
 
         List<SupplierEntity> supplierEntityList = repository.retrieveAll();
-        for (SupplierEntity supplierEntity : supplierEntityList){
+        for (SupplierEntity supplierEntity : supplierEntityList) {
             supplierList.add(new ModelMapper().map(supplierEntity, Supplier.class));
         }
         return supplierList;
@@ -40,7 +44,15 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public Supplier retrieveById(Long id) {
+
+        if(id == null || id <= 0)
+            throw new InvalidParameterException("Invalid ID: ID must be a positive numeric value.");
+
         Optional<SupplierEntity> supplierEntity = repository.retrieveById(id);
+
+        if (supplierEntity.isEmpty())
+            throw new SupplierNotFoundException("Supplier Not Found");
+
         return new ModelMapper().map(supplierEntity, Supplier.class);
     }
 

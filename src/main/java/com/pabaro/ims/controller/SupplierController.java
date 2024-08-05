@@ -18,12 +18,12 @@ public class SupplierController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public void persist(@RequestBody Supplier supplier){
+    public void persist(@RequestBody Supplier supplier) {
         service.persist(supplier);
     }
 
     @GetMapping()
-    public List<Supplier> retrieveAll(){
+    public List<Supplier> retrieveAll() {
         return service.retrieve();
     }
 
@@ -33,12 +33,12 @@ public class SupplierController {
     }
 
     @PutMapping()
-    public void update(@RequestBody Supplier supplier){
+    public void update(@RequestBody Supplier supplier) {
         service.update(supplier);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         service.delete(id);
     }
 }
