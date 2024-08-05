@@ -12,7 +12,19 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(SupplierNotFoundException.class)
     ResponseEntity<ErrorResponse> handleSupplierNotFoundException(SupplierNotFoundException ex){
-        ErrorResponse errorResponse = ErrorResponse.builder().errorMessage(ex.getMessage()).build();
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .errorMessage(ex.getMessage())
+                .status("FAILED")
+                .build();
+        return ResponseEntity.ok().body(errorResponse);
+    }
+
+    @ExceptionHandler(InvalidParameterException.class)
+    ResponseEntity<ErrorResponse> handleInvalidParameterException(InvalidParameterException ex){
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .errorMessage(ex.getMessage())
+                .status("FAILED")
+                .build();
         return ResponseEntity.ok().body(errorResponse);
     }
 }

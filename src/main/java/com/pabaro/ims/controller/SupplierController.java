@@ -1,9 +1,11 @@
 package com.pabaro.ims.controller;
 
+import com.pabaro.ims.dto.SuccessResponse;
 import com.pabaro.ims.dto.Supplier;
 import com.pabaro.ims.service.SupplierService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,8 +30,13 @@ public class SupplierController {
     }
 
     @GetMapping("/{id}")
-    public Supplier retrieveById(@PathVariable Long id) {
-        return service.retrieveById(id);
+    public ResponseEntity<SuccessResponse> retrieveById(@PathVariable Long id) {
+        Supplier supplier = service.retrieveById(id);
+        SuccessResponse successResponse = SuccessResponse.builder()
+                .status("SUCCESS")
+                .data(supplier)
+                .build();
+        return ResponseEntity.ok().body(successResponse);
     }
 
     @PutMapping()

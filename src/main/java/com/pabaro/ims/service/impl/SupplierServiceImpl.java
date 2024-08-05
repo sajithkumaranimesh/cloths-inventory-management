@@ -10,8 +10,6 @@ import com.pabaro.ims.service.SupplierService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.util.NumberUtils;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,13 +43,10 @@ public class SupplierServiceImpl implements SupplierService {
     @Override
     public Supplier retrieveById(Long id) {
 
-        if(id == null || id <= 0)
-            throw new InvalidParameterException("Invalid ID: ID must be a positive numeric value.");
-
         Optional<SupplierEntity> supplierEntity = repository.retrieveById(id);
 
         if (supplierEntity.isEmpty())
-            throw new SupplierNotFoundException("Supplier Not Found");
+            throw new SupplierNotFoundException(String.format("%d No supplier found with this ID",id));
 
         return new ModelMapper().map(supplierEntity, Supplier.class);
     }
