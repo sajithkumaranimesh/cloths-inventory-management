@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -20,5 +21,13 @@ public class SupplierRepositoryImpl implements SupplierRepository {
     public List<SupplierEntity> retrieveAll() {
         String sql = "SELECT id,name,email,company,created_at,modified_at FROM supplier";
         return jdbcTemplate.query(sql, new EmployeeRowMapper());
+    }
+
+    @Override
+    public Optional<SupplierEntity> retrieveById(Long id) {
+        String sql = "SELECT id,name,email,company,created_at,modified_at FROM supplier WHERE id = ?";
+        return jdbcTemplate.query(sql, new EmployeeRowMapper(),id)
+                 .stream()
+                 .findFirst();
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,5 +36,11 @@ public class SupplierServiceImpl implements SupplierService {
             supplierList.add(new ModelMapper().map(supplierEntity, Supplier.class));
         }
         return supplierList;
+    }
+
+    @Override
+    public Supplier retrieveById(Long id) {
+        Optional<SupplierEntity> supplierEntity = repository.retrieveById(id);
+        return new ModelMapper().map(supplierEntity, Supplier.class);
     }
 }

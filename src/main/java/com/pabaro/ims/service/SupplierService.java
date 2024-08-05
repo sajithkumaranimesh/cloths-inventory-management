@@ -8,4 +8,6 @@ public interface SupplierService {
     void persist(Supplier supplier);
 
     List<Supplier> retrieve();
+
+    Supplier retrieveById(Long id);
 }

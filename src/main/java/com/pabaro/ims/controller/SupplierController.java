@@ -26,4 +26,9 @@ public class SupplierController {
     public List<Supplier> retrieveAll(){
         return service.retrieve();
     }
+
+    @GetMapping("/{id}")
+    public Supplier retrieveById(@PathVariable Long id) {
+        return service.retrieveById(id);
+    }
 }
