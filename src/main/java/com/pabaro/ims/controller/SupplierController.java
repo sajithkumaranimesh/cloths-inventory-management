@@ -31,4 +31,9 @@ public class SupplierController {
     public Supplier retrieveById(@PathVariable Long id) {
         return service.retrieveById(id);
     }
+
+    @PutMapping()
+    public void update(@RequestBody Supplier supplier){
+        service.update(supplier);
+    }
 }

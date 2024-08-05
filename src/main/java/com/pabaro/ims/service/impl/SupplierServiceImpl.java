@@ -43,4 +43,12 @@ public class SupplierServiceImpl implements SupplierService {
         Optional<SupplierEntity> supplierEntity = repository.retrieveById(id);
         return new ModelMapper().map(supplierEntity, Supplier.class);
     }
+
+    @Override
+    public void update(Supplier supplier) {
+        SupplierEntity supplierEntity = new ModelMapper().map(supplier, SupplierEntity.class);
+        if (repository.retrieveById(supplier.getId()).isPresent()){
+            repository.update(supplierEntity);
+        }
+    }
 }

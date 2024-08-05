@@ -30,4 +30,17 @@ public class SupplierRepositoryImpl implements SupplierRepository {
                  .stream()
                  .findFirst();
     }
+
+    @Override
+    public void update(SupplierEntity supplierEntity) {
+        String sql = "UPDATE supplier SET name = ?,email = ?,company = ?,created_at = ?,modified_at = ? WHERE id = ?";
+        jdbcTemplate.update(sql,
+                supplierEntity.getName(),
+                supplierEntity.getEmail(),
+                supplierEntity.getCompany(),
+                supplierEntity.getCreatedAt(),
+                supplierEntity.getModifiedAt(),
+                supplierEntity.getId()
+                );
+    }
 }

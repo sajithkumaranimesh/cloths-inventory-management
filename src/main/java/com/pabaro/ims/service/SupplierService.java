@@ -10,4 +10,6 @@ public interface SupplierService {
     List<Supplier> retrieve();
 
     Supplier retrieveById(Long id);
+
+    void update(Supplier supplier);
 }
