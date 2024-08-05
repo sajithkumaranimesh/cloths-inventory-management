@@ -47,8 +47,14 @@ public class SupplierServiceImpl implements SupplierService {
     @Override
     public void update(Supplier supplier) {
         SupplierEntity supplierEntity = new ModelMapper().map(supplier, SupplierEntity.class);
-        if (repository.retrieveById(supplier.getId()).isPresent()){
+        if (repository.retrieveById(supplier.getId()).isPresent())
             repository.update(supplierEntity);
-        }
+
+    }
+
+    @Override
+    public void delete(Long id) {
+        if (repository.retrieveById(id).isPresent())
+            repository.delete(id);
     }
 }

@@ -12,4 +12,6 @@ public interface SupplierService {
     Supplier retrieveById(Long id);
 
     void update(Supplier supplier);
+
+    void delete(Long id);
 }

@@ -43,4 +43,10 @@ public class SupplierRepositoryImpl implements SupplierRepository {
                 supplierEntity.getId()
                 );
     }
+
+    @Override
+    public void delete(Long id) {
+        String sql = "DELETE FROM supplier WHERE id = ?";
+        jdbcTemplate.update(sql,id);
+    }
 }
