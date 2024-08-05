@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/supplier")
@@ -18,5 +20,10 @@ public class SupplierController {
     @ResponseStatus(HttpStatus.CREATED)
     public void persist(@RequestBody Supplier supplier){
         service.persist(supplier);
+    }
+
+    @GetMapping()
+    public List<Supplier> retrieveAll(){
+        return service.retrieve();
     }
 }

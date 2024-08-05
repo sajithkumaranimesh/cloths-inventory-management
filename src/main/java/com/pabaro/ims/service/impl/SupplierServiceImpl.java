@@ -9,15 +9,31 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class SupplierServiceImpl implements SupplierService {
 
     private final SupplierJpaRepository jpaRepository;
+    private final SupplierRepository repository;
 
 
     @Override
     public void persist(Supplier supplier) {
         jpaRepository.save(new ModelMapper().map(supplier, SupplierEntity.class));
+    }
+
+    @Override
+    public List<Supplier> retrieve() {
+
+        List<Supplier> supplierList = new ArrayList<>();
+
+        List<SupplierEntity> supplierEntityList = repository.retrieveAll();
+        for (SupplierEntity supplierEntity : supplierEntityList){
+            supplierList.add(new ModelMapper().map(supplierEntity, Supplier.class));
+        }
+        return supplierList;
     }
 }

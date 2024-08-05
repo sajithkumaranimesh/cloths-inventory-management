@@ -14,6 +14,7 @@ public class SupplierEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String email;
     private String company;
     private String createdAt;
     private String modifiedAt;

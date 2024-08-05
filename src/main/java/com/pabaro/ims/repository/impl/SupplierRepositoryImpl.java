@@ -1,9 +1,14 @@
 package com.pabaro.ims.repository.impl;
 
+
+import com.pabaro.ims.entity.SupplierEntity;
+import com.pabaro.ims.mapper.EmployeeRowMapper;
 import com.pabaro.ims.repository.SupplierRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -11,4 +16,9 @@ public class SupplierRepositoryImpl implements SupplierRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
+    @Override
+    public List<SupplierEntity> retrieveAll() {
+        String sql = "SELECT id,name,email,company,created_at,modified_at FROM supplier";
+        return jdbcTemplate.query(sql, new EmployeeRowMapper());
+    }
 }
