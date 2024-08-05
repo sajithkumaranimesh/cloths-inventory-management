@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/pabaro_fashion
+    username: root
+    password: 2000
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
