@@ -7,7 +7,6 @@ import lombok.*;
 @Setter
 @Getter
 
-
 public class SupplierEntity {
     private Long id;
     private String name;
