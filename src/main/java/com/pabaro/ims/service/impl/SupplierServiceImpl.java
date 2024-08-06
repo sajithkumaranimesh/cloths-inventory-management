@@ -25,8 +25,13 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public void persist(Supplier supplier) {
+
         jpaRepository.save(new ModelMapper().map(supplier, SupplierEntity.class));
+
     }
+
+
+
 
     @Override
     public List<Supplier> retrieve() {
@@ -34,11 +39,17 @@ public class SupplierServiceImpl implements SupplierService {
         List<Supplier> supplierList = new ArrayList<>();
 
         List<SupplierEntity> supplierEntityList = repository.retrieveAll();
+
         for (SupplierEntity supplierEntity : supplierEntityList) {
             supplierList.add(new ModelMapper().map(supplierEntity, Supplier.class));
         }
+
         return supplierList;
+
     }
+
+
+
 
     @Override
     public Supplier retrieveById(Long id) {
@@ -51,17 +62,31 @@ public class SupplierServiceImpl implements SupplierService {
         return new ModelMapper().map(supplierEntity, Supplier.class);
     }
 
+
+
+
     @Override
     public void update(Supplier supplier) {
+
+        if (supplier == null)
+            throw new InvalidParameterException("Supplier Not Provide");
+
         SupplierEntity supplierEntity = new ModelMapper().map(supplier, SupplierEntity.class);
-        if (repository.retrieveById(supplier.getId()).isPresent())
-            repository.update(supplierEntity);
+
+        if (repository.retrieveById(supplier.getId()).isEmpty())
+            throw new SupplierNotFoundException(String.format("%s This Supplier Not Found",supplier));
+
+        repository.update(supplierEntity);
 
     }
 
+
+
+
     @Override
     public void delete(Long id) {
-        if (repository.retrieveById(id).isPresent())
-            repository.delete(id);
+
+        repository.delete(id);
+
     }
 }
