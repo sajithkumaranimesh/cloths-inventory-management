@@ -25,8 +25,13 @@ public class SupplierController {
     }
 
     @GetMapping()
-    public List<Supplier> retrieveAll() {
-        return service.retrieve();
+    public ResponseEntity<SuccessResponse> retrieveAll() {
+        List<Supplier> retrievList = service.retrieve();
+        SuccessResponse successResponse = SuccessResponse.builder()
+                .status("SUCCESS")
+                .data(retrievList)
+                .build();
+        return ResponseEntity.ok().body(successResponse);
     }
 
     @GetMapping("/{id}")

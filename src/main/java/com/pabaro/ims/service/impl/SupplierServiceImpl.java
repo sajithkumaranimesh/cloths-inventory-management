@@ -2,7 +2,6 @@ package com.pabaro.ims.service.impl;
 
 import com.pabaro.ims.dto.Supplier;
 import com.pabaro.ims.entity.SupplierEntity;
-import com.pabaro.ims.exception.InvalidParameterException;
 import com.pabaro.ims.exception.SupplierNotFoundException;
 import com.pabaro.ims.repository.SupplierJpaRepository;
 import com.pabaro.ims.repository.SupplierRepository;
