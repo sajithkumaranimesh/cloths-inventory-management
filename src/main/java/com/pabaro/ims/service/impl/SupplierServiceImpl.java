@@ -68,9 +68,6 @@ public class SupplierServiceImpl implements SupplierService {
     @Override
     public void update(Supplier supplier) {
 
-        if (supplier == null)
-            throw new InvalidParameterException("Supplier Not Provide");
-
         SupplierEntity supplierEntity = new ModelMapper().map(supplier, SupplierEntity.class);
 
         if (repository.retrieveById(supplier.getId()).isEmpty())
@@ -85,6 +82,9 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public void delete(Long id) {
+
+        if (repository.retrieveById(id).isEmpty())
+            throw new SupplierNotFoundException(String.format("%d No supplier found with this ID",id));
 
         repository.delete(id);
 
