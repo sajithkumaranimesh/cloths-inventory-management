@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class EmployeeRowMapper implements RowMapper<SupplierEntity> {
+public class SupplierRowMapper implements RowMapper<SupplierEntity> {
     @Override
     public SupplierEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new SupplierEntity(

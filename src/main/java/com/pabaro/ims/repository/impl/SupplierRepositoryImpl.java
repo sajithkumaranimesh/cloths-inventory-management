@@ -2,7 +2,7 @@ package com.pabaro.ims.repository.impl;
 
 
 import com.pabaro.ims.entity.SupplierEntity;
-import com.pabaro.ims.mapper.EmployeeRowMapper;
+import com.pabaro.ims.mapper.SupplierRowMapper;
 import com.pabaro.ims.repository.SupplierRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -20,13 +20,13 @@ public class SupplierRepositoryImpl implements SupplierRepository {
     @Override
     public List<SupplierEntity> retrieveAll() {
         String sql = "SELECT id,name,email,company,created_at,modified_at FROM supplier";
-        return jdbcTemplate.query(sql, new EmployeeRowMapper());
+        return jdbcTemplate.query(sql, new SupplierRowMapper());
     }
 
     @Override
     public Optional<SupplierEntity> retrieveById(Long id) {
         String sql = "SELECT id,name,email,company,created_at,modified_at FROM supplier WHERE id = ?";
-        return jdbcTemplate.query(sql, new EmployeeRowMapper(), id)
+        return jdbcTemplate.query(sql, new SupplierRowMapper(), id)
                 .stream()
                 .findFirst();
     }
