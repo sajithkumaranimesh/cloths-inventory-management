@@ -30,4 +30,9 @@ public class ProductController {
     public Product retrieveById(@PathVariable Long id){
         return service.retrieveById(id);
     }
+
+    @PutMapping()
+    public void update(@RequestBody Product product){
+        service.update(product);
+    }
 }

@@ -27,8 +27,26 @@ public class ProductRepositoryImpl implements ProductRepository {
     public Optional<ProductEntity> findById(Long id) {
         String sql = "SELECT id,name,size,price,stock_quantity,description," +
                 "is_available,created_at,modified_at,supplier_id,category_id FROM product WHERE id = ?";
-        return jdbcTemplate.query(sql, new ProductRowMapper(),id)
+        return jdbcTemplate.query(sql, new ProductRowMapper(), id)
                 .stream()
                 .findFirst();
+    }
+
+    @Override
+    public void update(ProductEntity productEntity) {
+        String sql = "UPDATE product SET name = ?,size=?, price = ?, stock_quantity = ?, description = ?, is_available = ?, created_at = ?, modified_at = ?, supplier_id = ?, category_id = ? WHERE id = ?";
+        jdbcTemplate.update(sql,
+                productEntity.getName(),
+                productEntity.getSize(),
+                productEntity.getPrice(),
+                productEntity.getStockQuantity(),
+                productEntity.getDescription(),
+                productEntity.getIsAvailable(),
+                productEntity.getCreatedAt(),
+                productEntity.getModifiedAt(),
+                productEntity.getSupplier_id(),
+                productEntity.getCategory_id(),
+                productEntity.getId()
+        );
     }
 }

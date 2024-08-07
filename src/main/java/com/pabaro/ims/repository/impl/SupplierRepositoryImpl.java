@@ -18,13 +18,13 @@ public class SupplierRepositoryImpl implements SupplierRepository {
     private final JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<SupplierEntity> retrieveAll() {
+    public List<SupplierEntity> findAll() {
         String sql = "SELECT id,name,email,company,created_at,modified_at FROM supplier";
         return jdbcTemplate.query(sql, new SupplierRowMapper());
     }
 
     @Override
-    public Optional<SupplierEntity> retrieveById(Long id) {
+    public Optional<SupplierEntity> findById(Long id) {
         String sql = "SELECT id,name,email,company,created_at,modified_at FROM supplier WHERE id = ?";
         return jdbcTemplate.query(sql, new SupplierRowMapper(), id)
                 .stream()

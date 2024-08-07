@@ -11,4 +11,6 @@ public interface ProductService {
     List<Product> retrieveAll();
 
     Product retrieveById(Long id);
+
+    void update(Product product);
 }

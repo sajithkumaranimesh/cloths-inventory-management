@@ -44,4 +44,10 @@ public class ProductServiceImpl implements ProductService {
         Optional<ProductEntity> productEntity = repository.findById(id);
         return new ModelMapper().map(productEntity, Product.class);
     }
+
+    @Override
+    public void update(Product product) {
+        ProductEntity productEntity = new ModelMapper().map(product, ProductEntity.class);
+        repository.update(productEntity);
+    }
 }

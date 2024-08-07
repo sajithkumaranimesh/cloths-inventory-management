@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SupplierRepository {
-    List<SupplierEntity> retrieveAll();
+    List<SupplierEntity> findAll();
 
-    Optional<SupplierEntity> retrieveById(Long id);
+    Optional<SupplierEntity> findById(Long id);
 
     void update(SupplierEntity supplierEntity);
 
