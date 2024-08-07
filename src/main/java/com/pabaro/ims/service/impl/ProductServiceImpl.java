@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,5 +37,11 @@ public class ProductServiceImpl implements ProductService {
             productList.add(new ModelMapper().map(productEntity, Product.class));
 
         return productList;
+    }
+
+    @Override
+    public Product retrieveById(Long id) {
+        Optional<ProductEntity> productEntity = repository.findById(id);
+        return new ModelMapper().map(productEntity, Product.class);
     }
 }
