@@ -2,6 +2,7 @@ package com.pabaro.ims.service.impl;
 
 import com.pabaro.ims.dto.Category;
 import com.pabaro.ims.entity.CategoryEntity;
+import com.pabaro.ims.exception.CategoryNotFoundException;
 import com.pabaro.ims.repository.CategoryJpaRepository;
 import com.pabaro.ims.repository.CategoryRepository;
 import com.pabaro.ims.service.CategoryService;
@@ -44,12 +45,20 @@ public class CategoryServiceImpl implements CategoryService {
 
         Optional<CategoryEntity> categoryEntity = repository.findById(id);
 
+        if (categoryEntity.isEmpty())
+            throw new CategoryNotFoundException(String.format("%d No category found with this ID",id));
+
         return new ModelMapper().map(categoryEntity, Category.class);
     }
 
     @Override
     public void update(Category category) {
+
         CategoryEntity categoryEntity = new ModelMapper().map(category, CategoryEntity.class);
+
+
+
+
         repository.update(categoryEntity);
     }
 
