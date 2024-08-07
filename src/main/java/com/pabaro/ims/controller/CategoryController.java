@@ -33,8 +33,13 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public Category retrieveById(@PathVariable Long id){
-        return service.retrieveById(id);
+    public ResponseEntity<SuccessResponse> retrieveById(@PathVariable Long id){
+        Category category = service.retrieveById(id);
+        SuccessResponse successResponse = SuccessResponse.builder()
+                .status("SUCCESS")
+                .data(category)
+                .build();
+        return ResponseEntity.ok().body(successResponse);
     }
 
     @PutMapping()
