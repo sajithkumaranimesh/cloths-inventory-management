@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -20,4 +21,14 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         String sql = "SELECT id,name,description,created_at,modified_at FROM category";
         return jdbcTemplate.query(sql, new CategoryRowMapper());
     }
+
+    @Override
+    public Optional<CategoryEntity> findById(Long id) {
+        String sql = "SELECT id,name,description,created_at,modified_at FROM category WHERE id = ?";
+        return jdbcTemplate.query(sql, new CategoryRowMapper(), id)
+                .stream()
+                .findFirst();
+    }
+
+
 }

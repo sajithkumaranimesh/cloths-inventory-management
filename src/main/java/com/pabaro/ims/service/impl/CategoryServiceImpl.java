@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,5 +37,19 @@ public class CategoryServiceImpl implements CategoryService {
         }
 
         return categoryList;
+    }
+
+    @Override
+    public Category retrieveById(Long id) {
+
+        Optional<CategoryEntity> categoryEntity = repository.findById(id);
+
+        return new ModelMapper().map(categoryEntity, Category.class);
+    }
+
+    @Override
+    public void update(Category category) {
+        CategoryEntity categoryEntity = new ModelMapper().map(category, CategoryEntity.class);
+        repository.update(categoryEntity);
     }
 }

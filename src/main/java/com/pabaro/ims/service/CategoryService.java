@@ -8,4 +8,8 @@ public interface CategoryService {
     void persist(Category category);
 
     List<Category> retrieveAll();
+
+    Category retrieveById(Long id);
+
+    void update(Category category);
 }

@@ -24,4 +24,14 @@ public class CategoryController {
     public List<Category> retrieveAll(){
         return service.retrieveAll();
     }
+
+    @GetMapping("/{id}")
+    public Category retrieveById(@PathVariable Long id){
+        return service.retrieveById(id);
+    }
+
+    @PutMapping()
+    public void update(@RequestBody Category category){
+        service.update(category);
+    }
 }
