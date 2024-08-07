@@ -1,8 +1,10 @@
 package com.pabaro.ims.controller;
 
 import com.pabaro.ims.dto.Product;
+import com.pabaro.ims.dto.SuccessResponse;
 import com.pabaro.ims.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,13 +23,23 @@ public class ProductController {
     }
 
     @GetMapping()
-    public List<Product> retrieveAll(){
-        return service.retrieveAll();
+    public ResponseEntity<SuccessResponse> retrieveAll(){
+        List<Product> productList = service.retrieveAll();
+        SuccessResponse successResponse = SuccessResponse.builder()
+                .status("SUCCESS")
+                .data(productList)
+                .build();
+        return ResponseEntity.ok().body(successResponse);
     }
 
     @GetMapping("/{id}")
-    public Product retrieveById(@PathVariable Long id){
-        return service.retrieveById(id);
+    public ResponseEntity<SuccessResponse> retrieveById(@PathVariable Long id){
+        Product product = service.retrieveById(id);
+        SuccessResponse successResponse = SuccessResponse.builder()
+                .status("SUCCESS")
+                .data(product)
+                .build();
+        return ResponseEntity.ok().body(successResponse);
     }
 
     @PutMapping()
