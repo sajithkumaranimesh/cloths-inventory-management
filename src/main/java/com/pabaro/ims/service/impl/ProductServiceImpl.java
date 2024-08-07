@@ -50,4 +50,9 @@ public class ProductServiceImpl implements ProductService {
         ProductEntity productEntity = new ModelMapper().map(product, ProductEntity.class);
         repository.update(productEntity);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        repository.deleteById(id);
+    }
 }

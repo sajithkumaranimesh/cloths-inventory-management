@@ -1,7 +1,6 @@
 package com.pabaro.ims.controller;
 
 import com.pabaro.ims.dto.Product;
-import com.pabaro.ims.entity.ProductEntity;
 import com.pabaro.ims.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -34,5 +33,10 @@ public class ProductController {
     @PutMapping()
     public void update(@RequestBody Product product){
         service.update(product);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        service.deleteById(id);
     }
 }
