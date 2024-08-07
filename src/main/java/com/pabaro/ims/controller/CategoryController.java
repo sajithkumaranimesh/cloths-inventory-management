@@ -1,8 +1,10 @@
 package com.pabaro.ims.controller;
 
 import com.pabaro.ims.dto.Category;
+import com.pabaro.ims.dto.SuccessResponse;
 import com.pabaro.ims.service.CategoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +23,13 @@ public class CategoryController {
     }
 
     @GetMapping()
-    public List<Category> retrieveAll(){
-        return service.retrieveAll();
+    public ResponseEntity<SuccessResponse> retrieveAll(){
+        List<Category> categoryList = service.retrieveAll();
+        SuccessResponse successResponse = SuccessResponse.builder()
+                .status("SUCCESS")
+                .data(categoryList)
+                .build();
+        return ResponseEntity.ok().body(successResponse);
     }
 
     @GetMapping("/{id}")
