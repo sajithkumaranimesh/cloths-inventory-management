@@ -6,25 +6,32 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
+
 @Entity
-@Table(name = "category")
-public class CategoryEntity {
+@Table(name = "product")
+public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private BigDecimal size;
+    private BigDecimal price;
+    private Integer stockQuantity;
     private String description;
+    private Boolean isAvailable;
     private String createdAt;
     private String modifiedAt;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private List<ProductEntity> productEntityList;
+    @Column(name = "category_id")
+    private Long category_id;
+
+    @Column(name = "supplier_id")
+    private Long supplier_id;
 }

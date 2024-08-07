@@ -15,7 +15,8 @@ public class SupplierRowMapper implements RowMapper<SupplierEntity> {
                 rs.getString("email"),
                 rs.getString("company"),
                 rs.getString("created_at"),
-                rs.getString("modified_at")
+                rs.getString("modified_at"),
+                null
         );
     }
 }

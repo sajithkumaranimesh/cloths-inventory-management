@@ -1,0 +1,31 @@
+package com.pabaro.ims.service.impl;
+
+import com.pabaro.ims.dto.Product;
+import com.pabaro.ims.entity.ProductEntity;
+import com.pabaro.ims.repository.ProductJpaRepository;
+import com.pabaro.ims.repository.ProductRepository;
+import com.pabaro.ims.service.ProductService;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class ProductServiceImpl implements ProductService {
+
+    private final ProductJpaRepository jpaRepository;
+    private final ProductRepository repository;
+
+
+    @Override
+    public void persist(Product product) {
+        jpaRepository.save(new ModelMapper().map(product, ProductEntity.class));
+    }
+
+    @Override
+    public List<Product> retrieveAll() {
+        return List.of();
+    }
+}

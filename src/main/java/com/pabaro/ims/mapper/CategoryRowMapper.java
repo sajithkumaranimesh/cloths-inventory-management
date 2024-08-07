@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 public class CategoryRowMapper implements RowMapper<CategoryEntity> {
 
     @Override
@@ -15,7 +16,8 @@ public class CategoryRowMapper implements RowMapper<CategoryEntity> {
                 rs.getString("name"),
                 rs.getString("description"),
                 rs.getString("created_at"),
-                rs.getString("modified_at")
+                rs.getString("modified_at"),
+                null
         );
     }
 }
