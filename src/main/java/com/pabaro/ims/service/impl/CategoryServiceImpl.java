@@ -56,14 +56,18 @@ public class CategoryServiceImpl implements CategoryService {
 
         CategoryEntity categoryEntity = new ModelMapper().map(category, CategoryEntity.class);
 
-
-
+        if (repository.findById(category.getId()).isEmpty())
+            throw new CategoryNotFoundException(String.format("%s This Category Not Found",category));
 
         repository.update(categoryEntity);
     }
 
     @Override
     public void deleteById(Long id) {
+
+        if (repository.findById(id).isEmpty())
+            throw new CategoryNotFoundException(String.format("%d No Category found with this ID",id));
+
         repository.deleteById(id);
     }
 }
