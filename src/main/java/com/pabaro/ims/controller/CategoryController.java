@@ -34,4 +34,9 @@ public class CategoryController {
     public void update(@RequestBody Category category){
         service.update(category);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id){
+        service.deleteById(id);
+    }
 }

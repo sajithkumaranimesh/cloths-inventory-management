@@ -41,4 +41,10 @@ public class CategoryRepositoryImpl implements CategoryRepository {
                 categoryEntity.getId()
         );
     }
+
+    @Override
+    public void deleteById(Long id) {
+        String sql = "DELETE FROM category WHERE id = ?";
+        jdbcTemplate.update(sql,id);
+    }
 }

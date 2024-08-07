@@ -52,4 +52,9 @@ public class CategoryServiceImpl implements CategoryService {
         CategoryEntity categoryEntity = new ModelMapper().map(category, CategoryEntity.class);
         repository.update(categoryEntity);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        repository.deleteById(id);
+    }
 }
