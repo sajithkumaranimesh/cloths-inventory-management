@@ -30,5 +30,15 @@ public class CategoryRepositoryImpl implements CategoryRepository {
                 .findFirst();
     }
 
-
+    @Override
+    public void update(CategoryEntity categoryEntity) {
+        String sql = "UPDATE category SET name = ?,description = ?,created_at = ?,modified_at =?  WHERE id = ?";
+        jdbcTemplate.update(sql,
+                categoryEntity.getName(),
+                categoryEntity.getDescription(),
+                categoryEntity.getCreatedAt(),
+                categoryEntity.getModifiedAt(),
+                categoryEntity.getId()
+        );
+    }
 }
