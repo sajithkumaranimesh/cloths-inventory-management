@@ -18,12 +18,12 @@ public class CategoryController {
     private final CategoryService service;
 
     @PostMapping()
-    public void persist(@RequestBody Category category){
+    public void persist(@RequestBody Category category) {
         service.persist(category);
     }
 
     @GetMapping()
-    public ResponseEntity<SuccessResponse> retrieveAll(){
+    public ResponseEntity<SuccessResponse> retrieveAll() {
         List<Category> categoryList = service.retrieveAll();
         SuccessResponse successResponse = SuccessResponse.builder()
                 .status("SUCCESS")
@@ -33,7 +33,7 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SuccessResponse> retrieveById(@PathVariable Long id){
+    public ResponseEntity<SuccessResponse> retrieveById(@PathVariable Long id) {
         Category category = service.retrieveById(id);
         SuccessResponse successResponse = SuccessResponse.builder()
                 .status("SUCCESS")
@@ -43,12 +43,12 @@ public class CategoryController {
     }
 
     @PutMapping()
-    public void update(@RequestBody Category category){
+    public void update(@RequestBody Category category) {
         service.update(category);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Long id){
+    public void deleteById(@PathVariable Long id) {
         service.deleteById(id);
     }
 }

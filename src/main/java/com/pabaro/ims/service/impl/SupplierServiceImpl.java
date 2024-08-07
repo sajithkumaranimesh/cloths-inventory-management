@@ -83,7 +83,7 @@ public class SupplierServiceImpl implements SupplierService {
     public void delete(Long id) {
 
         if (repository.retrieveById(id).isEmpty())
-            throw new SupplierNotFoundException(String.format("%d No supplier found with this ID",id));
+            throw new SupplierNotFoundException(String.format("%d No supplier found with this ID", id));
 
         repository.delete(id);
 

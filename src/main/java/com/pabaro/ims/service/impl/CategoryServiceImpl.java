@@ -33,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         List<CategoryEntity> categoryEntityList = repository.findAll();
 
-        for (CategoryEntity categoryEntity : categoryEntityList){
+        for (CategoryEntity categoryEntity : categoryEntityList) {
             categoryList.add(new ModelMapper().map(categoryEntity, Category.class));
         }
 
@@ -46,7 +46,7 @@ public class CategoryServiceImpl implements CategoryService {
         Optional<CategoryEntity> categoryEntity = repository.findById(id);
 
         if (categoryEntity.isEmpty())
-            throw new CategoryNotFoundException(String.format("%d No category found with this ID",id));
+            throw new CategoryNotFoundException(String.format("%d No category found with this ID", id));
 
         return new ModelMapper().map(categoryEntity, Category.class);
     }
@@ -57,7 +57,7 @@ public class CategoryServiceImpl implements CategoryService {
         CategoryEntity categoryEntity = new ModelMapper().map(category, CategoryEntity.class);
 
         if (repository.findById(category.getId()).isEmpty())
-            throw new CategoryNotFoundException(String.format("%s This Category Not Found",category));
+            throw new CategoryNotFoundException(String.format("%s This Category Not Found", category));
 
         repository.update(categoryEntity);
     }
@@ -66,7 +66,7 @@ public class CategoryServiceImpl implements CategoryService {
     public void deleteById(Long id) {
 
         if (repository.findById(id).isEmpty())
-            throw new CategoryNotFoundException(String.format("%d No Category found with this ID",id));
+            throw new CategoryNotFoundException(String.format("%d No Category found with this ID", id));
 
         repository.deleteById(id);
     }
