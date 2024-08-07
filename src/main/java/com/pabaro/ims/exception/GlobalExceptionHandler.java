@@ -36,4 +36,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .build();
         return ResponseEntity.ok().body(errorResponse);
     }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    ResponseEntity<ErrorResponse> handleProductNotFoundException(ProductNotFoundException ex) {
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .errorMessage(ex.getMessage())
+                .status("FAILED")
+                .build();
+        return ResponseEntity.ok().body(errorResponse);
+    }
 }
