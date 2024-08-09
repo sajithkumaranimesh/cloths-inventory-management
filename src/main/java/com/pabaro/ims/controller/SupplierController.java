@@ -25,6 +25,7 @@ public class SupplierController {
     }
 
     @GetMapping()
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<SuccessResponse> retrieveAll() {
         List<Supplier> retrievList = service.retrieve();
         SuccessResponse successResponse = SuccessResponse.builder()
@@ -35,6 +36,7 @@ public class SupplierController {
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<SuccessResponse> retrieveById(@PathVariable Long id) {
         Supplier supplier = service.retrieveById(id);
         SuccessResponse successResponse = SuccessResponse.builder()
@@ -45,11 +47,13 @@ public class SupplierController {
     }
 
     @PutMapping()
+    @ResponseStatus(HttpStatus.OK)
     public void update(@RequestBody Supplier supplier) {
         service.update(supplier);
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
