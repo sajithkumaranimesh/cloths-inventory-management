@@ -3,6 +3,7 @@ package com.pabaro.ims.controller;
 import com.pabaro.ims.dto.SuccessResponse;
 import com.pabaro.ims.dto.Supplier;
 import com.pabaro.ims.service.SupplierService;
+import com.pabaro.ims.util.LogOperationTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ public class SupplierController {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
+    @LogOperationTime
     public ResponseEntity<SuccessResponse> retrieveAll() {
         List<Supplier> retrievList = service.retrieve();
         SuccessResponse successResponse = SuccessResponse.builder()
